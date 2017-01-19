@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				left: 10px;
+				top:10px;
+			}
+			.red{
+				background: red;
+			}
+			.yellow{
+				background: yellow;
+			}
+		</style>
+		<script>
+//		//工厂模式
+//		   function createObj(name,age){
+//		   	  var obj = new Object();
+//		   	  obj.name = name;
+//		   	  obj.age = age;
+//		   	  obj.run = function(){
+//		   	  	console.log(obj.name + obj.age);
+//		   	  }
+//		   	  return obj;
+//		   }
+//		   var box1 = createObj('box1',12); 
+//		   var box2 = createObj('box2',22);
+//         box1.run(); box2.run();
+           //构造函数
+           function Obj(){
+  //         	  Obj.name = name;//实例属性
+           	  Obj.prototype.name = "less";
+           	  Obj.age = 23;
+           	  this.run = function(){//实例方法，地址是不一样的
+           	  	  console.log(this.name);
+           	  };
+           	  Obj.prototype.run1 = function(){//实例方法，地址是不一样的
+           	  	  console.log(this.name+this.age);
+           	  }
+           }
+           var aaa = new Obj();
+           aaa.name = "jack";
+           var aaa1 = new Obj();
+           alert(aaa.name);
+           alert(aaa1.name);
+           console.log(aaa.constructor);
+           
+           //工厂
+       
+		</script>
+	</head>
+	<body>
+		<div id="box1" class="red"></div>
+		<div id="box2" class="yellow"></div>
+		<div id="box3" class="red"></div>
+		<div id="box4" class="yellow"></div>
+	</body>
+</html>

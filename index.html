@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+			    <meta name="viewport" content="width=device-width, initial-scale =1" />
+		<title></title>
+		<style>
+		body{
+			background: bisque;
+		}
+			.box{width: 100px;height: 100px;position: absolute;top: 0;left: 0;}
+			.bb{width: 100px;height: 100px;background: bisque;position: absolute;left: 300px;top: -100px;}
+			.xx,.a,.b,.c,.d{width: 100px;height: 100px;background: bisque;position: absolute;left: 200px;top: -100px;}
+			img{width: 100px;height: 100px;}
+			button{margin-left: 200px;}
+		</style>
+		<script>
+				window.onload = function(){
+							function getStyleAttr(obj,attr){
+									if(window.getComputedStyle){  //ie9+  ff 谷歌
+										return getComputedStyle(obj,null)[attr];			
+									}
+									//ie8及以下
+									return obj.currentStyle[attr];
+								}
+					 //礼物3匀速运动
+				          function StartMove3(obj,attr,iTarget,sudu,t){
+				          	this.obj = obj;
+				          	this.attr = attr;
+				          	this.iTarget = iTarget;
+				          	this.sudu = sudu;
+							//清除之前运动定时器
+						    this.t  = t;
+						    this.d = 400;
+							//开启定时器，开始运动
+							this.run = function(){
+								//获取初始位置
+								var current = parseInt(getStyleAttr(obj,attr));
+							//	console.log(current);
+								//设置一个速度
+								var iSpeed = current < iTarget ? sudu : -sudu;
+					//			console.log(iSpeed);
+								//当到目标位置时，关闭定时器，停止运动
+								if(current >= iTarget){
+							//	 console.log(current);
+								 
+								 obj.style.top=0;
+								 obj.style.left = parseInt(Math.random()*300)+"px";
+								 return current =0;
+								 
+									  //跳出函数  不执行下面的代码
+								}	
+								
+								//运动	current + iSpeed	
+								obj.style[attr] = current + iSpeed + "px";		
+								
+							}
+						}
+				          var box = document.querySelector(".box");
+				          var bb = document.querySelector(".bb");
+				          var xx = document.querySelector(".xx");
+				          var a = document.querySelector(".a");
+				          var b = document.querySelector(".b");
+				          var c = document.querySelector(".c");
+				          var d = document.querySelector(".d");
+				          var btn = document.querySelector("button");
+				          var box1 = new StartMove3(box,"top",400,5);
+				          var bb1 = new StartMove3(bb,"top",500,3);
+				          var xx1 = new StartMove3(xx,"top",500,1);
+				          var a1 = new StartMove3(a,"top",500,4);
+				          var b1 = new StartMove3(b,"top",500,1);
+				          var c1 = new StartMove3(c,"top",500,2);
+				          var d1 = new StartMove3(d,"top",500,5);
+				          btn.onclick = function(){
+				          	 setInterval(function(){
+				          	 	    box1.run();
+						          	bb1.run();
+						          	xx1.run();
+						          	a1.run();
+						          	b1.run();
+						          	c1.run();
+						          	d1.run();
+						          	if(box.style.top ==400+"px"){
+									console.log(box1.d);
+						          		
+						          	}
+						          
+						         
+				          	 },10)
+				          		    
+				          }
+						
+				        
+				          	
+				
+				}
+			  
+		</script>
+	</head>
+	<body>
+	<div class="box"><img src="img/1.png"/></div>
+	<div class="bb"><img src="img/6.png"/></div>
+	<div class="xx"><img src="img/7.png"/></div>
+	<div class="a"><img src="img/3.png"/></div>
+	<div class="b"><img src="img/5.png"/></div>
+	<div class="c"><img src="img/qq1.png"/></div>
+	<div class="d"><img src="img/5.jpg"/></div>
+	<button>开始运动</button>
+	</body>
+</html>
