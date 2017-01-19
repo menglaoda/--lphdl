@@ -63,16 +63,16 @@
 				          var b = document.querySelector(".b");
 				          var c = document.querySelector(".c");
 				          var d = document.querySelector(".d");
-				          var btn = document.querySelector("button");
+				          var btn = document.querySelectorAll("button");
 				          var box1 = new StartMove3(box,"top",400,5);
 				          var bb1 = new StartMove3(bb,"top",500,3);
 				          var xx1 = new StartMove3(xx,"top",500,1);
 				          var a1 = new StartMove3(a,"top",500,4);
-				          var b1 = new StartMove3(b,"top",500,1);
+				          var b1 = new StartMove3(b,"top",500,6);
 				          var c1 = new StartMove3(c,"top",500,2);
 				          var d1 = new StartMove3(d,"top",500,5);
-				          btn.onclick = function(){
-				          	 setInterval(function(){
+				          btn[0].onclick = function(){
+				          	time= setInterval(function(){
 				          	 	    box1.run();
 						          	bb1.run();
 						          	xx1.run();
@@ -88,6 +88,9 @@
 						         
 				          	 },10)
 				          		    
+				          }
+				          btn[1].onclick = function(){
+				          	clearInterval(time);
 				          }
 						
 				        
@@ -106,5 +109,6 @@
 	<div class="c"><img src="img/qq1.png"/></div>
 	<div class="d"><img src="img/5.jpg"/></div>
 	<button>开始运动</button>
+	<button>停止运动</button>
 	</body>
 </html>
